@@ -1,18 +1,19 @@
 package Deque.impl;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import Deque.Interface.DequeInterface;
 
-public class MyCircularDeque implements DequeInterface {
-    int[] dequue;
+public class MyCircularDeque<E> implements DequeInterface<E> {
+    E[] dequue;
     private final int capacity, lastIndex;
     private int front, rear;
 
 
     public MyCircularDeque(int capacity) {
         validateCapacity(capacity);
-        dequue = new int[capacity];
+        dequue = (E[]) new Object [capacity];
         this.capacity = capacity;
         this.front = capacity % 2;
         this.rear = front + 1;
@@ -21,7 +22,7 @@ public class MyCircularDeque implements DequeInterface {
 
 
     @Override
-    public boolean insertLast(int value) {
+    public boolean insertLast(E value) {
         if (isFull()) return false;
 
         if (!isInArrRange(rear)) rear = 0;
@@ -33,7 +34,7 @@ public class MyCircularDeque implements DequeInterface {
     }
 
     @Override
-    public boolean insertFront(int value) {
+    public boolean insertFront(E value) {
         if (isFull()) return false;
 
 
@@ -47,18 +48,18 @@ public class MyCircularDeque implements DequeInterface {
     }
 
     @Override
-    public int getFront() {
+    public E getFront() {
         return isInArrRange(front) ? dequue[this.front] : dequue[0];
     }
 
     @Override
-    public int getRear() {
+    public E getRear() {
         return isInArrRange(rear) ? dequue[this.rear] : dequue[lastIndex];
     }
 
     @Override
     public boolean isFull() {
-        return Arrays.stream(this.dequue).filter(d -> d != 0).count() == capacity;
+        return Arrays.stream(this.dequue).filter(Objects::nonNull).count() == capacity-1;
     }
 
     @Override
@@ -67,7 +68,7 @@ public class MyCircularDeque implements DequeInterface {
 
         if (isFrontEqualRare()) rear--;
         if (!isInArrRange(rear)) rear = lastIndex;
-        dequue[rear--] = 0;
+        dequue[rear--] = null;
         return true;
     }
 
@@ -77,14 +78,14 @@ public class MyCircularDeque implements DequeInterface {
 
         if (isFrontEqualRare()) front++;
         if (!isInArrRange(front)) front = 0;
-        this.dequue[front++] = 0;
+        this.dequue[front++] = null;
         return true;
     }
 
 
     @Override
     public boolean isEmpty() {
-        return Arrays.stream(this.dequue).filter(d -> d == 0).count() == capacity;
+        return Arrays.stream(this.dequue).filter(Objects::isNull).count() == capacity;
     }
 
     private boolean isInArrRange(int index) {

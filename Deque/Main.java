@@ -4,7 +4,7 @@ import Deque.impl.MyCircularDeque;
 
 public class Main {
     public static void main(String[] args) {
-        MyCircularDeque myCircularDeque = new MyCircularDeque(5);
+        MyCircularDeque<Integer> myCircularDeque = new MyCircularDeque<>(5);
         System.out.println(myCircularDeque.insertLast(1));
         System.out.println(myCircularDeque.insertLast(2));
         System.out.println(myCircularDeque.insertLast(3));
@@ -22,8 +22,5 @@ public class Main {
 
         System.out.println(myCircularDeque.deleteLast());
         System.out.println(myCircularDeque.deleteLast());
-
-
-
     }
 }

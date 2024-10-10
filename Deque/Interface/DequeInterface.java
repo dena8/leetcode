@@ -1,14 +1,14 @@
 package Deque.Interface;
 
-public interface DequeInterface {
+public interface DequeInterface <E>{
 
-    boolean insertLast(int value);
+    boolean insertLast(E value);
 
-    boolean insertFront(int value);
+    boolean insertFront(E value);
 
-    int getFront();
+    E getFront();
 
-    int getRear();
+    E getRear();
 
     boolean isFull();
 
