@@ -13,4 +13,8 @@ public interface DequeInterface {
     boolean isFull();
 
     boolean deleteLast();
+
+    boolean deleteFront();
+
+    boolean isEmpty();
 }
