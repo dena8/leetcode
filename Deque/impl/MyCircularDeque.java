@@ -96,8 +96,7 @@ public class MyCircularDeque<E> implements DequeInterface<E> {
         return front == rear;
     }
 
-    private boolean validateCapacity(int capacity){
+    private void validateCapacity(int capacity){
         if(capacity<4) throw new RuntimeException("Capacity must be grater than 4");
-        return true;
     }
 }
