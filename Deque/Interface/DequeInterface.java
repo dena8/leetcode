@@ -1,6 +1,6 @@
 package Deque.Interface;
 
-public interface DequeInterface <E>{
+public interface DequeInterface<E> {
 
     boolean insertLast(E value);
 
